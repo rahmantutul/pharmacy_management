@@ -33,7 +33,22 @@
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-spa' ></i>
+                <div class="parent-icon"><i class='bx bx-command' ></i>
+                </div>
+                <div class="menu-title">{{__('System Info')}}</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('users.index')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Users')}}</a>
+                </li>
+                <li> <a href="{{route('role.index')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Roles')}}</a>
+                </li>
+                <li> <a href="{{route('permission.index')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Permission')}}</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-spa'></i>
                 </div>
                 <div class="menu-title">Application</div>
             </a>
@@ -55,13 +70,6 @@
             </ul>
         </li>
         <li class="menu-label">UI Elements</li>
-        <li>
-            <a href="widgets.html">
-                <div class="parent-icon"><i class='bx bx-briefcase-alt-2'></i>
-                </div>
-                <div class="menu-title">Widgets</div>
-            </a>
-        </li>
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-cart-alt' ></i>
