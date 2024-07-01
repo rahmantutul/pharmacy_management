@@ -5,12 +5,15 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\LeafController;
+use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -55,7 +58,6 @@ Route::post('/gsetting/update', [SettingsController::class, 'gsettingupdate'])->
 
 Route::get('/esetting/index', [SettingsController::class, 'emailsettingindex'])->name('esetting.index');
 Route::post('/esetting/update', [SettingsController::class, 'emailsettingupdate'])->name('esetting.update');
-
 //--------------End SettingsController-------------------------------------
 
 Route::group(['prefix'=>'customer','as'=>'customer.'], function(){
@@ -69,7 +71,6 @@ Route::group(['prefix'=>'customer','as'=>'customer.'], function(){
 });
 //--------------End CustomerController-------------------------------------
 
-
 Route::group(['prefix'=>'ecategory','as'=>'ecategory.'], function(){
     Route::get('/', [ExpenseCategoryController::class, 'index'])->name('index');
     Route::get('/create', [ExpenseCategoryController::class, 'create'])->name('create');
@@ -79,7 +80,6 @@ Route::group(['prefix'=>'ecategory','as'=>'ecategory.'], function(){
     Route::get('/destory/{id}', [ExpenseCategoryController::class, 'destroy'])->name('destroy');
 });
 //--------------End ExpenseCategoryController-------------------------------------
-
 
 Route::group(['prefix'=>'expense','as'=>'expense.'], function(){
     Route::get('/', [ExpenseController::class, 'index'])->name('index');
@@ -128,3 +128,35 @@ Route::group(['prefix'=>'leaf','as'=>'leaf.'], function(){
     Route::get('/view/{id}', [LeafController::class, 'view'])->name('view');
 });
 //--------------End LeafController-------------------------------------
+
+Route::group(['prefix'=>'type','as'=>'type.'], function(){
+    Route::get('/', [TypeController::class, 'index'])->name('index');
+    Route::get('/create', [TypeController::class, 'create'])->name('create');
+    Route::post('/', [TypeController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [TypeController::class, 'edit'])->name('edit');
+    Route::post('/update', [TypeController::class, 'update'])->name('update');
+    Route::delete('/destory/{id}', [TypeController::class, 'destroy'])->name('destroy');
+});
+//--------------End TypeController-------------------------------------
+
+Route::group(['prefix'=>'vendor','as'=>'vendor.'], function(){
+    Route::get('/', [VendorController::class, 'index'])->name('index');
+    Route::get('/create', [VendorController::class, 'create'])->name('create');
+    Route::post('/', [VendorController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [VendorController::class, 'edit'])->name('edit');
+    Route::post('/update', [VendorController::class, 'update'])->name('update');
+    Route::get('/destory/{id}', [VendorController::class, 'destroy'])->name('destroy');
+    Route::get('/view/{id}', [VendorController::class, 'view'])->name('view');
+});
+//--------------End CustomerController-------------------------------------
+
+Route::group(['prefix'=>'medicine','as'=>'medicine.'], function(){
+    Route::get('/', [MedicineController::class, 'index'])->name('index');
+    Route::get('/create', [MedicineController::class, 'create'])->name('create');
+    Route::post('/', [MedicineController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [MedicineController::class, 'edit'])->name('edit');
+    Route::post('/update', [MedicineController::class, 'update'])->name('update');
+    Route::get('/destory/{id}', [MedicineController::class, 'destroy'])->name('destroy');
+    Route::get('/view/{id}', [MedicineController::class, 'view'])->name('view');
+});
+//--------------End CustomerController-------------------------------------

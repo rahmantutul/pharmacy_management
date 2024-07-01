@@ -83,6 +83,13 @@
                 <div class="menu-title">{{__('Supplier')}}</div>
             </a>
         </li>
+        <li class="{{ request()->routeIs('vendor.*') ? 'mm-active' : '' }}">
+            <a href="{{route('vendor.index')}}">
+                <div class="parent-icon"> <i class="fadeIn animated bx bx-unlink"></i>
+                </div>
+                <div class="menu-title">{{__('Vendor')}}</div>
+            </a>
+        </li>
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='fadeIn animated bx bx-capsule'></i>
@@ -95,6 +102,10 @@
                 <li class="{{ request()->routeIs('unit.*') ? 'mm-active' : '' }}"> <a href="{{route('unit.index')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Unit')}}</a>
                 </li>
                 <li class="{{ request()->routeIs('leaf.*') ? 'mm-active' : '' }}"> <a href="{{route('leaf.index')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Leaf')}}</a>
+                </li>
+                <li class="{{ request()->routeIs('type.*') ? 'mm-active' : '' }}"> <a href="{{route('type.index')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Type')}}</a>
+                </li>
+                <li class="{{ request()->routeIs('medicine.*') ? 'mm-active' : '' }}"> <a href="{{route('medicine.index')}}"><i class="bx bx-right-arrow-alt"></i>{{__('Medicine')}}</a>
                 </li>
             </ul>
         </li>

@@ -101,7 +101,6 @@
                                                  <option {{($key == $dataInfo->timezone) ?'selected':''}} value="{{$key}}">{{$key}}--{{$zone}}</option>
                                                 @endforeach
                                             </select>
-            
                                         </div>
                                     </div>
                                     <div class="col-md-6">
