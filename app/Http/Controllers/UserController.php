@@ -15,7 +15,7 @@ class UserController extends Controller
     
     public function index()
     {
-        $dataList = User::all();
+        $dataList = User::with('roles')->get();
         return view('backend.users.index', compact('dataList'));
     }
 
@@ -38,20 +38,22 @@ class UserController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        User::create([
+        $user=User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'roleId' => $request->roleId,
             'password' => Hash::make($request->password),
         ]);
+
+        $user->syncRoles($request->roleId);
 
         return redirect()->back()->with('success', 'User created successfully.');
     }
 
     public function edit($id)
     {
-        $dataInfo = User::findOrFail($id);
-        return view('backend.users.edit', compact('dataInfo'));
+        $dataInfo = User::with('roles')->findOrFail($id);
+        $roleList = Role::all();
+        return view('backend.users.edit', compact('dataInfo','roleList'));
     }
 
     public function update(Request $request)
@@ -79,9 +81,10 @@ class UserController extends Controller
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'roleId' => $request->roleId,
             'password' => $request->new_password ? Hash::make($request->new_password) : $user->password,
         ]);
+
+        $user->syncRoles($request->roleId);
 
         return redirect()->back()->with('success', 'User updated successfully.');
     }

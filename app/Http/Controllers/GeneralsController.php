@@ -16,6 +16,5 @@ class GeneralsController extends Controller
               ->where('id', $id)->first()->name;
         return $name;
     }
-    
 
 }

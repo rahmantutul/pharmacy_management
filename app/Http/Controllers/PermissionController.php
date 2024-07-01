@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller
@@ -42,17 +43,6 @@ class PermissionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Role $role)
-    {
-
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -84,7 +74,7 @@ class PermissionController extends Controller
 
         $dataInfo->save();
 
-        return back()->with('success', 'Role Updated Successfully!');
+        return back()->with('success', 'Permission Updated Successfully!');
           
     }
     public function destroy($id)

@@ -57,12 +57,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <select class="form-select form-select-sm mb-3" name="roleId" aria-label=".form-select-sm example" required>
-                                        <option selected="">Assign Role</option>
+                                        <option >Assign Role</option>
                                         @foreach ($roleList as $role)
-                                         <option value="{{$role->id}}">{{$role->name}}</option>
+                                         <option value="{{$role->name}}">{{$role->name}}</option>
                                         @endforeach
                                     </select>
-    
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label"> {{__('Password')}}</label>

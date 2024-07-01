@@ -7,13 +7,13 @@
 @section('content')
 <div class="page-content">
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">{{__('Users')}}</div>
+        <div class="breadcrumb-title pe-3">{{__('Roles')}}</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{__('User List')}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{__('Role List')}}</li>
                 </ol>
             </nav>
         </div>
@@ -55,7 +55,7 @@
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
                       <div class="btn-group btn-corner">
-                        <a href="#" class="btn btn-xs btn-primary edit">Edit</a>
+                        <a href="#" class="btn btn-xs btn-primary roleEdit">Edit</a>
                         <a href="{{ route('role.access',$role->id) }}" class="btn btn-xs btn-info">{{__('Mapping Access')}}</a>
                         <button class='btn btn-danger btn-sm delete'  type="submit" onclick="return confirm('Are You Sure? Want to Delete It.');">{{__('Delete')}}</button>
                       </div>
@@ -110,7 +110,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">	<b>Edit Role</b></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -118,7 +118,7 @@
       <form action="#" method="post" id="editForm" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
-        <input type="text" name="id" id="id" class="form-control" readonly="true" />
+        <input type="hidden" name="id" id="id" class="form-control" readonly="true" />
         <br/>
         <div class="modal-body">
 
@@ -137,7 +137,7 @@
         </div>
          <div class="modal-footer">
            <button type="submit" class="btn btn-primary">Update</button>
-           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
          </div>
        </form>
 
@@ -153,7 +153,7 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    $('.edit').on('click',function() {
+    $('.roleEdit').on('click',function() {
         $tr = $(this).closest('tr');
         var data = $tr.children("td").map(function(){
           return $(this).text();

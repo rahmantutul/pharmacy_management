@@ -27,6 +27,9 @@
 	<link rel="stylesheet" href="{{asset('assets/css/dark-theme.css')}}" />
 	<link rel="stylesheet" href="{{asset('assets/css/semi-dark.css')}}" />
 	<link rel="stylesheet" href="{{asset('assets/css/header-colors.css')}}" />
+	<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
+	<link href="{{asset('assets/plugins/select2/css/select2-bootstrap4.css')}}" rel="stylesheet" />
+
     @stack('css')
 	<title>{{ __('Pharmacy') }}</title>
 </head>
@@ -163,6 +166,7 @@
 	<script src="{{asset('assets/plugins/highcharts/js/export-data.js')}}"></script>
 	<script src="{{asset('assets/plugins/highcharts/js/accessibility.js')}}"></script>
 	<script src="{{asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script>
+	<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
     <script>
 		new PerfectScrollbar('.dashboard-top-countries');
 	</script>

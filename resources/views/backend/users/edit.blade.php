@@ -57,6 +57,15 @@
     
                                 </div>
                                 <div class="mb-3">
+                                    <select class="form-select form-select-sm mb-3" name="roleId" required aria-label=".form-select-sm example" required>
+                                        <option value="">Assign Role</option>
+                                        @foreach ($roleList as $role)
+                                         <option {{($dataInfo->roles->contains($role->id))?'selected':''}} value="{{$role->name}}">{{$role->name}}</option>
+                                        @endforeach
+                                    </select>
+    
+                                </div>
+                                <div class="mb-3">
                                     <label for="password" class="form-label">{{__('Current Password')}}</label>
                                     <input id="password" type="password" class="form-control " name="current_password"  autocomplete="current-password">
                                 </div>

@@ -17,11 +17,13 @@
                 </ol>
             </nav>
         </div>
+        @if(auth()->user()->can('user-create'))
         <div class="ms-auto">
             <div class="btn-group">
-                <a class="btn btn-sm btn-primary d-block m-1" href="{{route('users.create')}}">Create User</a>
+                <a class="btn btn-sm btn-primary d-block m-1" href="{{route('users.create')}}">{{__('Create User')}}</a>
             </div>
         </div>
+        @endif
     </div>
     <div class="card">
         <div class="card-body">
@@ -31,6 +33,7 @@
                         <th scope="col">#</th>
                         <th scope="col">{{__('Name')}}</th>
                         <th scope="col">{{__('Email')}}</th>
+                        <th scope="col">{{__('Role')}}</th>
                         <th scope="col">{{__('Action')}}</th>
                     </tr>
                 </thead>
@@ -41,8 +44,17 @@
                         <td class="text-bold-500">{{$data->name}}</td>
                         <td>{{$data->email}}</td>
                         <td>
+                            @foreach ($data->roles as $item)
+                                <span class="badge bg-success">{{$item->name}}</span>
+                            @endforeach
+                        </td>
+                        <td>
+                            @if(auth()->user()->can('user-create'))
                             <a class="btn btn-sm btn-primary" href="{{route('users.edit', $data->id)}}">{{__('Edit')}}</a>
+                            @endif
+                            @if(auth()->user()->can('user-edit'))
                             <a class="btn btn-sm btn-danger" href="{{route('users.destroy', $data->id)}}" onclick="confirm('Are you sure you want to delete this user?') || event.stopImmediatePropagation()" wire:click="destroy({{$data->id}})">{{__('Delete')}}</a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

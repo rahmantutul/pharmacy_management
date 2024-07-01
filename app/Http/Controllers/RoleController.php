@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -119,7 +119,7 @@ class RoleController extends Controller
       $generalscontroller = new GeneralsController();
       $role_name = $generalscontroller->RoleName($id);
 
-      $roles = Role::query()
+      $roles = Role::with('permissions')
               ->where('id', $id)->first();
 
       return view ('backend.role.assign-permission',
@@ -128,41 +128,12 @@ class RoleController extends Controller
 
     public function access_store(Request $request)
     {
-      $id = $request->id;
-      $permission_list =  Permission::query()
-      ->where('group', '<>', NULL)
-      ->orderBy('group','asc')->get();
-      $group = Permission::query()->select('group')->orderBy('group','asc')->distinct()->get();
-
-      $generalscontroller = new GeneralsController();
-      $role_name = $generalscontroller->RoleName($id);
-
-      $role = Role::findOrFail($id);
-      if($request->has('permissions')){ 
-          $role->name = $request->role_name;
-          $role->permissions = json_encode($request->permissions);
-          //return $role->permissions;
-          $role->save();
-        //  flash(translate('Role has been Mapped successfully'))->success();
-        //  return redirect()->route('backend.role.index');
-      }
-      //return back();
-      return redirect()->back()->with('message','Role has been Mapped successfully')->withInput();
-      //return view ('/role/assign-permission', compact('permission_list','id','role_name','group'));
-    }
-
-
-    public function assignPermission(Request $request, Role $role)
-    {
-        return view('backend.role.assign-permission', [
-            'permissions' => Permission::all(),
-            'role'  =>  $role->load('permissions'),
+        $request->validate([
+            'permissions' => 'required',
         ]);
-    }
-
-    public function assign(Request $request, Role $role)
-    {
-        $role->permissions()->sync($request->permission_id);
-        return back()->with('message', 'Permission Assigned');
+        $id = $request->id;
+        $role = Role::findOrFail($id);
+        $role->syncPermissions($request->permissions);
+        return back()->with('succeess','Role has been Mapped successfully');
     }
 }
