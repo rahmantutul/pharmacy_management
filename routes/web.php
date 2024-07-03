@@ -6,6 +6,7 @@ use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\LeafController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
@@ -159,4 +160,14 @@ Route::group(['prefix'=>'medicine','as'=>'medicine.'], function(){
     Route::get('/destory/{id}', [MedicineController::class, 'destroy'])->name('destroy');
     Route::get('/view/{id}', [MedicineController::class, 'view'])->name('view');
 });
-//--------------End CustomerController-------------------------------------
+
+//--------------End MedicienController-------------------------------------
+Route::group(['prefix'=>'payment','as'=>'payment.'], function(){
+    Route::get('/', [PaymentMethodController::class, 'index'])->name('index');
+    Route::get('/create', [PaymentMethodController::class, 'create'])->name('create');
+    Route::post('/', [PaymentMethodController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [PaymentMethodController::class, 'edit'])->name('edit');
+    Route::post('/update', [PaymentMethodController::class, 'update'])->name('update');
+    Route::delete('/destory/{id}', [PaymentMethodController::class, 'destroy'])->name('destroy');
+});
+//--------------End MedicienController-------------------------------------

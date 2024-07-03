@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Leaf;
+use App\Models\PaymenMethod;
 use Illuminate\Http\Request;
 
-class LeafController extends Controller
+class PaymentMethodController extends Controller
 {
     public function index()
     {
-        return view('backend.leaf.index', ['dataList' => Leaf::paginate(50)]);
+        return view('backend.payment.index', ['dataList' => PaymenMethod::paginate(50)]);
     }
 
     /**
@@ -19,7 +19,7 @@ class LeafController extends Controller
      */
     public function create()
     {
-        return view('backend.Leaf.create');
+        return view('backend.payment.create');
     }
 
     /**
@@ -31,14 +31,15 @@ class LeafController extends Controller
     public function store(Request $request)
     { 
         $request->validate([
-        'name' => 'required|unique:categories,name',
+        'name' => 'required|unique:paymen_methods,name',
+        'balance' => 'required',
         ]);
 
-        $dataInfo = New Leaf();
+        $dataInfo = New PaymenMethod();
         $dataInfo->name = $request->name;
-        $dataInfo->qty=$request->qty;
+        $dataInfo->balance=$request->balance;
         $dataInfo->save();
-        return back()->with('success', 'Leaf Created Successfully!');
+        return back()->with('success', 'Paymen Method Created Successfully!');
     }
 
 
@@ -65,22 +66,23 @@ class LeafController extends Controller
     {
 
         $request->validate([
-        'name' => 'required|unique:categories,name,'.$request->id,
+        'name' => 'required|unique:paymen_methods,name,'.$request->id,
+        'balance' => 'required',
         ]);
 
-        $dataInfo=Leaf::find($request->id);
+        $dataInfo=PaymenMethod::find($request->id);
 
         $dataInfo->name=$request->name;
-        $dataInfo->qty=$request->qty;
+        $dataInfo->balance=$request->balance;
 
         $dataInfo->save();
 
-        return back()->with('success', 'Leaf Updated Successfully!');
+        return back()->with('success', 'Paymen Method Updated Successfully!');
           
     }
     public function destroy($id)
     {
-        Leaf::where('id',$id)->delete();
+        PaymenMethod::where('id',$id)->delete();
          return redirect()->back()->with('success','Deleted Successfull');
     }
 }

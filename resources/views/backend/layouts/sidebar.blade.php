@@ -109,6 +109,13 @@
                 </li>
             </ul>
         </li>
+        <li class="{{ request()->routeIs('payment.*') ? 'mm-active' : '' }}">
+            <a href="{{route('payment.index')}}">
+                <div class="parent-icon"> <i class="fadeIn animated bx bx-windows"></i>
+                </div>
+                <div class="menu-title">{{__('Payment Method')}}</div>
+            </a>
+        </li>
     </ul>
     <!--end navigation-->
 </div>
