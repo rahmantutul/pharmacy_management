@@ -14,16 +14,35 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
+    <style>
+        .bg{
+            background: url({{asset('assets/images/login-background.jpg')}}) no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card{
+            width: 700px;
+            height: 300px;
+            background-color: #b8dbec;
+        }
+    </style>
 </head>
-<body>
+<body class="bg">
     <div id="app">
         <main class="py-4">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-6 a">
                         <div class="card">
-                            <div class="card-header text-center p-3" ><h3>{{ __('Pharmacy Management System') }}</h3></div>
+                            <div class="card-header text-center p-3" ><h3><b>{{ __('Pharmacy Management System') }}</b></h3></div>
             
                             <div class="card-body">
                                 <form method="POST" action="{{ route('login') }}">
@@ -39,9 +58,7 @@
                                             @enderror
                                         </div>
                                     </div>
-            
                                     <div class="row mb-3">
-            
                                         <div class="col-md-12">
                                             <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                             @error('password')
@@ -51,7 +68,6 @@
                                             @enderror
                                         </div>
                                     </div>
-            
                                     <div class="row">
                                         <div class="col-md-12">
                                             <button type="submit" class="btn btn-primary form-control">
@@ -63,7 +79,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </main>
     </div>

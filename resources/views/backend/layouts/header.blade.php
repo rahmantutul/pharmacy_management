@@ -1,6 +1,6 @@
 	<!--start header -->
     <header>
-        <div class="topbar d-flex align-items-center bg-dark shadow-none border-light-2 border-bottom">
+        <div class="topbar d-flex align-items-center">
             <nav class="navbar navbar-expand">
                 <div class="mobile-toggle-menu text-white me-3"><i class='bx bx-menu'></i>
                 </div>

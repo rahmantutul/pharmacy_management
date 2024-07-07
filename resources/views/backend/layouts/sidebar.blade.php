@@ -2,9 +2,6 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="{{asset('assets/images/logo-icon.png')}}" class="logo-icon" alt="logo icon">
-        </div>
-        <div>
             <h4 class="logo-text">{{ __('Pharmacy') }}</h4>
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-first-page'></i>
@@ -116,7 +113,43 @@
                 <div class="menu-title">{{__('Payment Method')}}</div>
             </a>
         </li>
+        <li class="{{ request()->routeIs('purchase.*') ? 'mm-active' : '' }}">
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='fadeIn animated bx bx-capsule'></i>
+                </div>
+                <div class="menu-title">{{__('Purchase')}}</div>
+            </a>
+            <ul>
+                <li class="{{ request()->routeIs('purchase.create') ? 'mm-active' : '' }}"> <a href="{{route('purchase.create')}}"><i class="bx bx-right-arrow-alt"></i>{{__('New Purchase')}}</a>
+                </li>
+                <li class="{{ request()->routeIs('purchase.index') ? 'mm-active' : '' }}"> <a href="{{route('purchase.index')}}"><i class="bx bx-right-arrow-alt"></i>{{__('All Purchase')}}</a>
+                </li>
+                
+            </ul>
+        </li>
+        <li class="{{ request()->routeIs('sales.*') ? 'mm-active' : '' }}">
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='fadeIn animated bx bx-barcode'></i>
+                </div>
+                <div class="menu-title">{{__('Sales')}}</div>
+            </a>
+            <ul>
+                <li class="{{ request()->routeIs('sales.create') ? 'mm-active' : '' }}"> <a href="{{route('sales.create')}}"><i class="bx bx-right-arrow-alt"></i>{{__('New Sales')}}</a>
+                </li>
+                {{-- <li class="{{ request()->routeIs('purchase.index') ? 'mm-active' : '' }}"> <a href="{{route('purchase.index')}}"><i class="bx bx-right-arrow-alt"></i>{{__('All Purchase')}}</a>
+                </li> --}}
+                
+            </ul>
+        </li>
+        <li>
+            <a href="{{route('cache.clear')}}">
+                <div class="parent-icon"> <i class="fadeIn animated bx bx-health"></i>
+                </div>
+                <div class="menu-title">{{__('Clear Cache')}}</div>
+            </a>
+        </li>
     </ul>
+
     <!--end navigation-->
 </div>
 <!--end sidebar wrapper -->

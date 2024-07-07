@@ -32,8 +32,6 @@
                         <th scope="col">{{__('name')}}</th>
                         <th scope="col">{{__('Generic Name')}}</th>
                         <th scope="col">{{__('Strength')}}</th>
-                        <th scope="col">{{__('Price')}}</th>
-                        <th scope="col">{{__('Buy Price')}}</th>
                         <th scope="col">{{__('Supplier')}}</th>
                         <th scope="col">{{__('Image')}}</th>
                         <th scope="col">{{__('Action')}}</th>
@@ -46,8 +44,6 @@
                         <td class="text-bold-500">{{$data->name}}</td>
                         <td>{{$data->genericname}}</td>
                         <td>{{$data->strength}}</td>
-                        <td>{{$data->price}}</td>
-                        <td>{{$data->buyprice}}</td>
                         <td>{{$data?->supplier->name}}</td>
                         <td>
                             <img style="height:40; width:40px; border:1px solid #000;" src=" {{asset('uploads/images/medicine/'.$data->image)}}" alt="Favicon Image"> <br><br>
@@ -60,6 +56,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="col-md-12">
+                {{$dataList->links("pagination::bootstrap-4")}}
+              </div>
         </div>
     </div>
 </div>

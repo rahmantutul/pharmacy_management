@@ -16,7 +16,7 @@ class MedicineController extends Controller
 {
     public function index()
     {
-        $dataList = Medicine::with('supplier')->get();
+        $dataList = Medicine::with('supplier')->paginate(100);
         return view('backend.medicine.index', compact('dataList'));
     }
 
@@ -34,9 +34,6 @@ class MedicineController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'price' => 'required',
-            'buyprice' => 'required',
-            'vat' => 'required',
             'leafId' => 'required',
             'categoryId' => 'required',
             'vendorId' => 'required',
@@ -69,9 +66,6 @@ class MedicineController extends Controller
             'genericname' => $request->genericname,
             'shelf' => $request->shelf,
             'desc' => $request->desc,
-            'price' => $request->price,
-            'buyprice' => $request->buyprice,
-            'vat' => $request->vat,
             'igta' => $request->igta,
             'status' => $request->status,
             'leafId' => $request->leafId,
@@ -101,9 +95,6 @@ class MedicineController extends Controller
         $medicine = Medicine::find($dataId);
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'price' => 'required',
-            'buyprice' => 'required',
-            'vat' => 'required',
             'leafId' => 'required',
             'categoryId' => 'required',
             'vendorId' => 'required',
@@ -141,9 +132,6 @@ class MedicineController extends Controller
             'genericname' => $request->genericname,
             'shelf' => $request->shelf,
             'desc' => $request->desc,
-            'price' => $request->price,
-            'buyprice' => $request->buyprice,
-            'vat' => $request->vat,
             'igta' => $request->igta,
             'status' => $request->status,
             'leafId' => $request->leafId,

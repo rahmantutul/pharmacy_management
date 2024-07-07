@@ -30,7 +30,7 @@
 	<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
 	<link href="{{asset('assets/plugins/select2/css/select2-bootstrap4.css')}}" rel="stylesheet" />
 
-    @stack('css')
+    @stack('stylesheet')
 	<title>{{ __('Pharmacy') }}</title>
 </head>
 

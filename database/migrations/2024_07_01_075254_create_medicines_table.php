@@ -21,9 +21,6 @@ return new class extends Migration
             $table->string('shelf')->nullable();
             $table->string('desc')->nullable();
             $table->string('image');
-            $table->float('price');
-            $table->float('buyprice');
-            $table->float('vat');
             $table->float('igta')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->unsignedBigInteger('leafId');

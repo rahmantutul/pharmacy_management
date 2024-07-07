@@ -8,13 +8,16 @@ use App\Http\Controllers\LeafController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +26,17 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    Artisan::call('clear-compiled');
+    Artisan::call('optimize:clear');
+    
+    return redirect()->back();
+})->name('cache.clear');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -160,8 +174,8 @@ Route::group(['prefix'=>'medicine','as'=>'medicine.'], function(){
     Route::get('/destory/{id}', [MedicineController::class, 'destroy'])->name('destroy');
     Route::get('/view/{id}', [MedicineController::class, 'view'])->name('view');
 });
-
 //--------------End MedicienController-------------------------------------
+
 Route::group(['prefix'=>'payment','as'=>'payment.'], function(){
     Route::get('/', [PaymentMethodController::class, 'index'])->name('index');
     Route::get('/create', [PaymentMethodController::class, 'create'])->name('create');
@@ -171,3 +185,24 @@ Route::group(['prefix'=>'payment','as'=>'payment.'], function(){
     Route::delete('/destory/{id}', [PaymentMethodController::class, 'destroy'])->name('destroy');
 });
 //--------------End MedicienController-------------------------------------
+
+Route::group(['prefix'=>'purchase','as'=>'purchase.'], function(){
+    Route::get('/create', [PurchaseController::class, 'create'])->name('create');
+    Route::post('/', [PurchaseController::class, 'store'])->name('store');
+    Route::get('/seaarch-medicine', [PurchaseController::class, 'search_medicine'])->name('search');
+    Route::get('/cart/add', [PurchaseController::class, 'addToCart'])->name('cart.add');
+    Route::get('/cart/remove', [PurchaseController::class, 'removeFromCart'])->name('cart.remove');
+    Route::get('/index', [PurchaseController::class, 'index'])->name('index');
+    Route::get('/details/{id}', [PurchaseController::class, 'details'])->name('details');
+    Route::get('/return/{id}', [PurchaseController::class, 'returnItem'])->name('return');
+    Route::post('/return/store', [PurchaseController::class, 'storeReturnItem'])->name('return.store');
+    Route::get('/delete/{id}', [PurchaseController::class, 'delete'])->name('delete');
+});
+
+Route::group(['prefix'=>'sales','as'=>'sales.'], function(){
+    Route::get('/create', [SalesController::class, 'create'])->name('create');
+    Route::get('/', [SalesController::class, 'filter'])->name('medicines.filter');
+    Route::get('/cart/add', [SalesController::class, 'addToCart'])->name('cart.add');
+});
+
+//--------------End PurchaseController-------------------------------------

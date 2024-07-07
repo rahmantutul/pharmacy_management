@@ -118,12 +118,6 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
-                                            <label for="price" class="form-label">{{__('Price')}}</label>
-                                            <input id="price" type="number" class="form-control" name="price" value="{{old('price')}}" required autofocus>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
                                             <label for="vendorId" class="form-label">{{__('Vendor')}}</label>
                                             <select class="form-select form-select-sm mb-3 single-select" name="vendorId" required aria-label=".form-select-sm example" required>
                                                 <option value="">{{__('Select Vendor')}}</option>
@@ -142,18 +136,6 @@
                                                  <option value="{{$sup->id}}">{{$sup->name}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label for="buyprice" class="form-label">{{__('Buy Price')}}</label>
-                                            <input id="buyprice" type="number" class="form-control" name="buyprice" value="{{old('buyprice')}}" required autofocus>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label for="vat" class="form-label">{{__('Vat')}}</label>
-                                            <input id="vat" type="number" class="form-control" name="vat" value="{{old('vat')}}"  autofocus>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
